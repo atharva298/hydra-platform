@@ -1,0 +1,30 @@
+package com.hydra.auth_service.controller;
+
+import com.hydra.auth_service.dto.RegisterRequest;
+import com.hydra.auth_service.dto.LoginRequest;
+import com.hydra.auth_service.service.UserService;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequestMapping("/api/auth")
+public class AuthController {
+
+    private final UserService userService;
+
+    public AuthController(UserService userService) {
+        this.userService = userService;
+    }
+
+    @PostMapping("/register")
+    public ResponseEntity<String> register(@RequestBody RegisterRequest request) {
+        userService.register(request);
+        return ResponseEntity.ok("User registered successfully");
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<String> login(@RequestBody LoginRequest request) {
+        String token = userService.login(request.getEmail(), request.getPassword());
+        return ResponseEntity.ok(token);
+    }
+}
