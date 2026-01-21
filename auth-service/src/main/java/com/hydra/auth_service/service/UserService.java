@@ -9,7 +9,7 @@ import com.hydra.auth_service.exception.UserAlreadyExistsException;
 import com.hydra.auth_service.exception.InvalidCredentialsException;
 import com.hydra.auth_service.security.JwtUtil;
 
-import java.util.Optional;
+
 
 @Service
 public class UserService {
