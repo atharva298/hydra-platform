@@ -7,6 +7,10 @@ import java.time.LocalDateTime;
 @Table(name = "users")
 public class User {
 
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Role role;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -65,4 +69,13 @@ public class User {
     public LocalDateTime getCreatedAt() {
         return createdAt;
     }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
 }
+
